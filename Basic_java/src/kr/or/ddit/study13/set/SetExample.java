@@ -29,7 +29,7 @@ public class SetExample {
 //		s.add("가");
 //		s.add("나");
 //		s.add("다");
-//		s.add("다");//주복허용 X
+//		s.add("다");//중복허용 X
 //		s.add("다");
 //		s.add("다");
 //		s.add("다");

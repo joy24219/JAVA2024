@@ -31,8 +31,6 @@ public class ArrayListExample {
 			l.add(i+0.5);
 		}
 		//String, int ,double 다 입력가능
-		
-		
 		for (int i = 0; i < l.size(); i++) { //size() 가 마지막 입력 배열값
 			System.out.println(l.get(i));
 		}
