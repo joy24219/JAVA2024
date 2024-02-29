@@ -40,11 +40,11 @@ public class SetExample {
 //			System.out.println(it.next());
 //		}
 		
-		Set<Integer> s = new HashSet();
+		Set<Integer> s = new HashSet<Integer>();
 		while(s.size()<6) {
 			s.add(new Random().nextInt(45)+1);
 		}
-		Iterator it = s.iterator();
+		Iterator<Integer> it = s.iterator();
 		while(it.hasNext()) {
 			System.out.print(it.next()+", ");
 		}
