@@ -25,23 +25,40 @@ public class HomeWork18 {
 		System.out.println(getDeptSalSum(list));
 		
 		//3. enmno를 파라미터로 모든 정보 출력하는 메소드 만들기.
-		printAll(7369);
+		printAll(7369, list);
 		
 	}
 	
-	public void printAll(int empno) {
-		List<Map> list = dataInput();
-		for (int i = 0; i < list.size(); i++) {
-		    Map m = list.get(i);
-			if(m.containsValue(empno)) {
-				Set<String> set = m.keySet();
-				Iterator<String> it = set.iterator();
-				while(it.hasNext()){
-					String key = it.next();
-					System.out.println(key+" : "+m.get(key));
-				}
-			}
-		}	
+//	public void printAll(int empno,List<Map> list) {
+//		for (int i = 0; i < list.size(); i++) {
+//		    Map m = list.get(i);
+//			if(m.containsValue(empno)) {
+//				Set<String> set = m.keySet();
+//				Iterator<String> it = set.iterator();
+//				while(it.hasNext()){
+//					String key = it.next();
+//					System.out.println(key+" : "+m.get(key));
+//				}
+//			}
+//		}	
+//	}	
+	public void printAll(int empno,List<Map> list) {
+	    for(Map map : list){
+	    	int eno =(int) map.get("EMPNO");
+	    	if(eno != empno) continue;
+	    	
+//		    	Iterator it = map.keySet().iterator();
+//		    	while(it.hasNext()) {
+//		    		String key = (String) it.next();
+//		    		Object value = map.get(key);
+//		    		System.out.println(key+" : "+value);
+//		    	}
+	    	System.out.println("empno : "+map.get("EMPNO"));
+	    	System.out.println("empno : "+map.get("ENAME"));
+	    	System.out.println("empno : "+map.get("JOB"));
+	    	System.out.println("empno : "+map.get("SAL"));
+	    	System.out.println("empno : "+map.get("DNAME"));
+	    }
 	}	
 	public Map<String, Integer> getDeptSalSum(List<Map> list){
 
