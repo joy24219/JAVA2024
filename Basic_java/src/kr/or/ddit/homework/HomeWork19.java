@@ -17,7 +17,7 @@ public class HomeWork19 {
 		printAll(list);
 		
 		// 차량번호를 입력하면 시간 계산
-		int min = getMin(list, 5961);
+		int min = getMin(list, "0000");
 		
 		// 차량 시간별 요금 계산 
 		int pay = pay(min);
@@ -36,7 +36,7 @@ public class HomeWork19 {
 		}
 	}
 	
-	public int getMin(List<Map> list, int carNum) {
+	public int getMin(List<Map> list, String carNum) {
 		int time = 0;
 		Map<String,String> temp = new HashMap();
 		
@@ -46,7 +46,7 @@ public class HomeWork19 {
 			String T =(String) map.get("시각");
 			String C =(String) map.get("내역");
 			
-			if(map.containsValue(""+carNum)) {
+			if(map.containsValue(carNum)) {
 				if(C.equals("입차")) {
 					temp.put("시각", T);
 				}else if(C.equals("출차")){
