@@ -132,8 +132,8 @@ public class Class1 {
 		int sel = 0;
 		
 		while (true) {
+			System.out.println("\n────────────────────");
 			System.out.println("                학급관리                ");
-			System.out.println("────────────────────");
 			System.out.println("────────────────────");
 			System.out.println(" 1. 학생추가");
 			System.out.println(" 2. 학생조회");
@@ -144,7 +144,7 @@ public class Class1 {
 			System.out.println(" 7. 종료");
 			System.out.println("────────────────────");
 			System.out.println("────────────────────");
-			System.out.print(" 입력(숫자만) : ");
+			System.out.print(" 번호를 입력하세요 : ");
 			if (sc.hasNextInt()) {
 		        sel = sc.nextInt();
 		    } else {
@@ -153,50 +153,54 @@ public class Class1 {
 		        continue;
 		    }
 			switch (sel) {
-				case 1:	add(maxPs);
-				case 2:	inquiry();
-				case 3:	change();
-				case 4:	delete();
-				case 5:	allInquiry();
-				case 6:	classInquiry();
-				case 7:	end(); break;
-				default: System.out.println("입력 값을 확인해 주세요."); 
+				case 1:	add(); break; 
+				case 2:	oneInquiry(); break;
+				case 3:	change(); break;
+				case 4:	delete(); break;
+				case 5:	allInquiry(); break;
+				case 6:	classInquiry(); break;
+				case 7:	break;                 // 7. 종료를 선택 시, 프로그램이 종료됩니다.
+				default: System.out.println("입력 값을 확인해 주세요.") ; 
 			}
 		}
 		
 	}
-	public void add(int maxPs) {
+	
+	public void add() {
 		Scanner scAdd = new Scanner(System.in);
 		// 1. 학생 추가를 선택할 시. // 학생 1명의 정보를 추가
-		maxPs++;
 		Person p = new Person();
-		String name; int age; String gender; int classNum; String phone;
+		String name; int age; String gender; int classNum; String phone; String mail;
 		
-		System.out.print("\n이름을 입력하세요 : ");
+		System.out.print("\n 이름을 입력하세요 : ");
 		name = scAdd.next();
 		p.setName(name);
 		
-		System.out.print("\n나이를 입력하세요 : ");
+		System.out.print(" 나이를 입력하세요 : ");
 		age = scAdd.nextInt();
 		p.setAge(age);
 		
-		System.out.print("\n성별를 입력하세요 : ");
+		System.out.print(" 성별를 입력하세요 : ");
 		gender = scAdd.next();
 		p.setGender(gender);
 		
-		System.out.print("\n학급번호를 입력하세요 : ");
-		classNum = scAdd.nextInt();
-		p.setClassNum(classNum);
-		
-		System.out.print("\n전화번호를 입력하세요 : ");
+		System.out.print(" 전화번호를 입력하세요 : ");
 		phone = scAdd.next();
 		p.setPhone(phone);
 		
-		ps[maxPs] = p;
+		System.out.print(" 이메일를 입력하세요 : ");
+		mail = scAdd.next();
+		p.setMail(phone);
 		
-		System.out.println(ps[maxPs].getName());
+		System.out.print(" 학급번호를 입력하세요 : ");
+		classNum = scAdd.nextInt();
+		p.setClassNum(classNum);
+		
+		ps[maxPs] = p;
+		maxPs++;
+		
 	}
-	public void inquiry() {
+	public void oneInquiry() {
 		Scanner scInq = new Scanner(System.in);
 		// 2. 학생 조회를 선택할 시.
 		// 학생의 이름을 입력받아서 해당 학생의 정보를 조회합니다.
@@ -208,13 +212,30 @@ public class Class1 {
 		// 전화번호 : 010-1234-1234
 		// 이메일   : ddit@naver.com
 		// 학급반 	: 304호
-		
-		System.out.print("\n조회할 이름을 입력하세요 : ");
-		String name = scInq.next();
-		for (int i = 0; i < maxPs; i++) {
+		while (true) {
+			System.out.println("────────────────────");
+			System.out.print(" [조회] 할 이름을 입력하세요 : ");
+			String name = scInq.next();
+			for (int i = 0; i < maxPs; i++) {
+				if(ps[i].getName().equals(name)) {
+					System.out.println("조회하신 학생의 이름은 ["+ps[i].getName()+"] 입니다. "
+													+ "\n 이름 	  : "+ps[i].getName()+""
+													+ " 나이 	  : "+ps[i].getAge()+""
+													+ " 성별 	  : "+ps[i].getGender()+""
+													+ " 전화번호 : "+ps[i].getPhone()+""
+													+ " 이메일   : "+ps[i].getMail()+""
+													+ " 학급번호 : "+ps[i].getClassNum());
+				}else {
+					System.out.println(" 조회하신 학생 이름이 존재하지 않습니다.");
+				}
+			}
+			System.out.println("\n 그만 조회하시겠습니까? \n Y : 그만조회하기 | Y외의 버튼 : 계속조회");
+			String selInq = scInq.next();
+			if (selInq.equals("Y") || selInq.equals("y") || selInq.equals("YES") || selInq.equals("yes")) { break; }
 		}
 	}
 	public void change() {
+		Scanner scCg = new Scanner(System.in);
 		// 3. 학생변경을 선택 할시,
 		// ┌─────────────────────┐
 		// │  번호  │    이름    │  나이  │  성별  │
@@ -227,8 +248,40 @@ public class Class1 {
 		// 번호 또는 이름을 입력받아서, 선택한 학생의 이름, 나이, 성별, 전화번호, 이메일 중 하나를 선택해서 변경하도록 합니다.
 		// 1. 이름  2. 나이  3. 성별  4. 전화번호  5. 이메일
 		// 총 5개의 메뉴중 선택해 변경하도록 합니다.
+		allInquiry();
+		int sel   = 0;
+		int selInfo = 0;
+		
+		while (true) {
+			System.out.println(" 변경할 학생의 번호를 입력하세요 : ");
+			sel = scCg.nextInt();
+			sel = sel-1; // 고객의 입력값은 1번부터 시작
+			
+			if (sel<maxPs && sel>=0) {	break; }
+			System.out.println(" 입력값을 확인해주세요.");
+		}
+		
+
+		while (true) {
+			System.out.println("변경할 정보를 선택하세요.");
+			System.out.println("1. 이름  2. 나이  3. 성별  4. 전화번호  5. 이메일");
+			selInfo = scCg.nextInt();
+			String closing = "변경되었습니다.";
+			
+			
+			if(selInfo == 1) 	  {System.out.print(ps[sel].getName()+"변경할 이름을 입력하세요 : ");     
+//			ps[selPs-1].setName(scCg.next());   
+			System.out.println(closing); break;}
+			else if(selInfo == 2) {System.out.print("변경할 나이를 입력하세요 : ");     ps[sel].setAge(scCg.nextInt()); System.out.println(closing); break;}
+			else if(selInfo == 3) {System.out.print("변경할 성별을 입력하세요 : ");     ps[sel].setGender(scCg.next()); System.out.println(closing); break;}
+			else if(selInfo == 4) {System.out.print("변경할 전화번호를 입력하세요 : "); ps[sel].setPhone(scCg.next());  System.out.println(closing); break;}
+			else if(selInfo == 5) {System.out.print("변경할 이메일을 입력하세요 : ");   ps[sel].setMail(scCg.next());   System.out.println(closing); break;}
+			else {System.out.println("입력값을 확인해주세요.");}
+		}
 	}
 	public void delete() {
+		Scanner scDel = new Scanner(System.in);
+		int sel = 0;
 		// 4. 학생 삭제
 		// ┌─────────────────────┐
 		// │  번호  │    이름    │  나이  │  성별  │
@@ -239,6 +292,24 @@ public class Class1 {
 		// │    4   │   정형돈   │   25   │  남자  │
 		// ......
 		// 번호 또는 이름을 입력받아서, 해당 학생을 삭제합니다.
+		allInquiry();
+		while (true) {
+			System.out.print(" 삭제할 번호를 입력하세요 : ");
+			sel = scDel.nextInt();
+			sel = sel-1; // 고객의 입력값은 1번부터 시작
+			
+			if (sel<maxPs && sel>=0) { 	break; }
+			System.out.println("입력값을 확인해주세요.");
+		}
+		Person[] temp = new Person[maxPs-1];
+		int cnt = 0 ;
+		for (int i = 0; i < maxPs; i++) {
+			if (sel==i) continue;
+			temp[cnt++]=ps[i];
+		}
+		ps=temp;
+		maxPs--;
+		System.out.println(" 삭제를 완료하였습니다.");
 	}
 	public void allInquiry() {
 		// 5. 전체조회
@@ -251,14 +322,40 @@ public class Class1 {
 		// │    4   │   정형돈   │   25   │  남자  │
 		// ......
 		// 등록된 학생 모두를 출력합니다.
+		System.out.println("┌─────────────────────┐");
+		System.out.println("│  번호  │    이름    │  나이  │  성별  │");
+		System.out.println("│--------│------------│--------│--------│");
+		for (int i = 0; i < maxPs; i++) {
+			System.out.print("│   ");
+			if(i<9) System.out.print(" ");
+			System.out.println(i+1+"   │   "+ps[i].getName()+"   │   "+ps[i].getAge()+"   │  "+ps[i].getGender()+"  │");
+		}
+		System.out.println("└─────────────────────┘");
+		
 	}
 	public void classInquiry() {
+		Scanner scCI = new Scanner(System.in);
+		int cnt = 0;
 		// 6. 학급반 조회
 		// 학급반을 입력하게 하고 예를 들어 '304호'를 입력하면 
 		// 304호 학생들만 목록에 나타나게 해주세요.
-	}
-	public void end() {
-		// 7. 종료를 선택 시, 프로그램이 종료됩니다.
+		System.out.print(" 조회할 학급을 번호로 입력하세요 : ");
+		int sel =scCI.nextInt();
+		
+		System.out.println("["+sel+"호] 학급의 학생목록");
+		System.out.println("┌─────────────────────┐");
+		System.out.println("│  번호  │    이름    │  나이  │  성별  │");
+		System.out.println("│--------│------------│--------│--------│");
+		for (int i = 0; i < maxPs; i++) {
+			if (ps[i].getClassNum()==sel) {
+				++cnt;
+				System.out.print("│   ");
+				if(i<9) System.out.print(" ");
+				System.out.println(cnt+"   │   "+ps[i].getName()+"   │   "+ps[i].getAge()+"   │  "+ps[i].getGender()+"  │");
+			}
+		}
+		System.out.println("└─────────────────────┘");
+		
 	}
 }
 
@@ -268,18 +365,18 @@ class Person{
 	private String gender;
 	private int classNum;
 	private String phone;
+	private String mail;
 	
- 
-	// 기본 생성자 부분
-	public Person(){}
+	public Person() {} // 오버로딩이 존재할 때 기본생성자는 필수
 	
-	// 생성자 부분 // 오버로딩이 존재할 때 기본생성자는 필수
-	public Person(String name, int age, String gender, int classNum, String phone){
+	// 생성자 부분 
+	public Person(String name, int age, String gender, int classNum, String phone, String mail){
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
 		this.classNum = classNum;
 		this.phone = phone;
+		this.mail = mail;
 	}
 	
 	//getter, setter 메소드 (public이 아닌 private 필드를 받기위해)
@@ -304,7 +401,7 @@ class Person{
 	public void setClassNum(int classNum) {
 		this.classNum = classNum;
 	}
-	public int setClassNum() {
+	public int getClassNum() {
 		return classNum;
 	}
 	public void setPhone(String phone) {
@@ -312,6 +409,12 @@ class Person{
 	}
 	public String getPhone() {
 		return phone;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	
 }
