@@ -107,6 +107,19 @@ public class MainController extends Print {
 			 System.out.println("등록 권한이 없습니다.");
 			 return View.HOME;
 		 }
+		 List<Object> prarm = new ArrayList<Object>();
+		 String name = ScanUtil.nextLine("과목명 입력 : ");
+		 String cont = ScanUtil.nextLine("과목설명 입력 : ");
+		 int ref = ScanUtil.nextInt("1.전공 | 2.교양 (숫자로 선택) : ");
+		 
+		 printSesList(memberService.semester());
+		 int ses = ScanUtil.nextInt("학기선택 : ");
+		 
+		 prarm.add(name);
+		 prarm.add(cont);
+		 if(ref==1) ;
+		 else if(ref==2) ;
+		 prarm.add(cont);
 		 
 		
 		return null;

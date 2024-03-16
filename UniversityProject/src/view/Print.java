@@ -6,6 +6,7 @@ import java.util.Map;
 
 import util.ScanUtil;
 import vo.MenuVo;
+import vo.SemesterVo;
 
 public class Print {
 	
@@ -42,43 +43,13 @@ public class Print {
 		printVar();
 		printLn(2);
 	}
-	
-	public void printList(List<MenuVo> menuList){
-		System.out.println("");
-		
-		for(MenuVo map : menuList) {
-			  int no   = map.getNo();
-	    	  String menu    = map.getMenu();
-	    	  String content  = map.getContent();
-	    	  String type  = map.getType();
-	    	  int price  = map.getPrice();
-	          System.out.println(no+"\t"+menu+"\t"+content+"\t"+type+"\t"+price);
+	public void printSesList(List<SemesterVo> list){
+		printVar();
+		for(SemesterVo map : list) {
+			  int no   = map.getSes_no();
+	    	  String name    = map.getSes_name();
+	          System.out.println(no+"\t"+name);
        }
 		printVar();
-		System.out.println("1. 타입검색");
-		System.out.println("2. 메뉴변경");
-		System.out.println("3. 메뉴삭제");
-		printLn(1);
-		printVar();
-		printLn(2);
-	}
-	public void printSearch(List<MenuVo> menuList){
-		System.out.println("");
-		
-		for(MenuVo map : menuList) {
-			  int no   = map.getNo();
-	    	  String menu    = map.getMenu();
-	    	  String content  = map.getContent();
-	    	  String type  = map.getType();
-	    	  int price  = map.getPrice();
-	          System.out.println(no+"\t"+menu+"\t"+content+"\t"+type+"\t"+price);
-       }
-		printVar();
-		System.out.println("1. 메뉴변경");
-		System.out.println("2. 메뉴삭제");
-		System.out.println("3. 전체리스트로");
-		printLn(1);
-		printVar();
-		printLn(2);
 	}
 }

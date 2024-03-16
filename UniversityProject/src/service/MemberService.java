@@ -6,6 +6,7 @@ import controller.MainController;
 import dao.MemberDao;
 import util.JDBCUtil;
 import vo.MemberVo;
+import vo.SemesterVo;
 
 public class MemberService {
 	private static MemberService instance = null;
@@ -27,5 +28,10 @@ public class MemberService {
 		if(mem == null) return false;
 		MainController.sessionStorage.put("member", mem);
 		return true;
+	}
+
+	public List<SemesterVo> semester() {
+		return memberDao.semester();
+		
 	}
 }
