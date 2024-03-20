@@ -42,4 +42,9 @@ public class MemberService {
 		MemberVo member = memberDao.memberInfoUpDate(param, param.size());
 		MainController.sessionStorage.put("member", member);
 	}
+
+	public void adminUpDate(List<Object> param) {
+		MemberVo member = memberDao.adminUpDate(param);
+		MainController.sessionStorage.put("member", member);
+	}
 }

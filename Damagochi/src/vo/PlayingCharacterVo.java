@@ -5,15 +5,15 @@ import lombok.Data;
 
 @Data
 public class PlayingCharacterVo {
-	 private int play_no;
-	 private String play_name;
-	 private int play_age;
-	 private int play_full;
-	 private int play_intimacy;
-	 private int play_clean;
-	 private int play_joy;
-	 private int play_knowledge;
-	 private int play_money;
-	 private String play_delyn;
+	 private int char_no;
+	 private String char_name;
+	 private int char_age;
+	 private int char_full;
+	 private int char_intimacy;
+	 private int char_clean;
+	 private int char_joy;
+	 private int char_knowledge;
+	 private int char_money;
+	 private String char_delyn;
 	 private int mem_no;
 }

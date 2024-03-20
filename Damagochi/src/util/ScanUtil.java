@@ -31,6 +31,7 @@ public class ScanUtil   {
 				return result;
 			}catch (NumberFormatException e) {
 				System.out.println("잘못 입력!!");
+				return -1999909999;
 			}
 		}
 	}
